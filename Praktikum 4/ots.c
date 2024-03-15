@@ -34,6 +34,11 @@ void moreThanRequired(char *longtext) {
     while (length > MAX_LENGTH) {
         length--;
     }
+
+    // Loop untuk menambahkan panjang hingga mencapai panjang maksimum saat panjang kalimat lebih dari 1945 dan kurang dari 2024
+    while (length < MAX_LENGTH) {
+        length++;
+    }
     
     printf("\nPanjang telah diperbarui menjadi %d", length);
 }
