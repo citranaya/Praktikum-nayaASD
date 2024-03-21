@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void koboImaginaryChess(int i, int j, int size, int *chessBoard) { 
+    // fungsi yang menentukan benar atau tidak nya posisi kuda 
+    if (i < 0 || j < 0 || i >= size || j >= size) {  
+        printf("Koordinat tidak valid\n");  
+        return;
+    }
+
+    //ini merupakan semua kemungkinan perpindahan 
+    int moves[8][2] = {
+        {-2, -1}, {-1, -2}, {1, -2}, {2, -1},  
+        {-2, 1}, {-1, 2}, {1, 2}, {2, 1}
+    };
+
+    //ini merupakan loop yang digunakan untuk menyatakan semua kemungkinan diatas lalu ditandai dengan 1 
+    for (int k = 0; k < 8; k++) {
+        int ni = i + moves[k][0];
+        int nj = j + moves[k][1];  // 
+        if (ni >= 0 && nj >= 0 && ni < size && nj < size) {
+            chessBoard[ni * size + nj] = 1;
+        }
+    }
+}
+
+int main() {
+    
+    int chessBoard[8][8] = {0};
+
+    
+    int i, j;
+    printf("Masukkan koordinat ");
+    scanf("%d %d", &i, &j);
+
+    
+    koboImaginaryChess(i, j, 8, (int *)chessBoard);
+
+    //menampilkan papan catur yang telah di perbarui 
+    printf("Papan catur setelah simulasi:\n");
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {  
+            printf("%d ", chessBoard[row][col]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
